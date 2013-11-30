@@ -1,17 +1,17 @@
 <?php
-/*
- * PageTools.php
- * 
- * MediaWiki extension
- * @author: Jean-Lou Dupont (http://www.bluecortex.com)
+/**
+ * Provides parser functions to retrieve/set useful page level information.
  *
- * Purpose:  Provides a 'magic word' interface to retrieve
- *           useful page level information.           
+ * @author   Jean-Lou Dupont (http://www.bluecortex.com)
+ * @author   Stephan Gambke
+ * @version  2.0
+ *
+ * @defgroup PageTools PageTools
  *
  * Features:
  * *********
  *
- * {{#pageincategory: 'category' }} 
+ * {{#pageincategory: 'category' }}
  *    returns 'true' if the current page is categorised with 'category'
  *
  * {{#pagenumcategories:}}
@@ -22,145 +22,85 @@
  *
  * {{#pagetitle: new title name}}
  *
- * {{#pagetitleadd: text to be added to the title name}} 
+ * {{#pagetitleadd: text to be added to the title name}}
  *
  * {{#pagesubtitle: text to be added to the page's subtitle }}
  *
- * DEPENDANCIES:
- * 1) 'ArticleEx' extension (from v1.6)
- * 2) 'ExtensionClass' extension
- *
- * Tested Compatibility:  MW 1.8.2, 1.9.3
- *
  * HISTORY:
- * -- Version 1.0:      initial availability
- * -- Version 1.1:  Added 'pagetitle': to modify the page's title. 
- *                  Added 'pagetitleadd': to add to the current page title.
- *                  Added 'pagesubtitle': to modify the page's subtitle      
+ * -- Version 1.0: initial availability
+ * -- Version 1.1: Added 'pagetitle': to modify the page's title.
+ *                 Added 'pagetitleadd': to add to the current page title.
+ *                 Added 'pagesubtitle': to modify the page's subtitle
+ * -- Version 2.0: Complete overhaul for compatibility to MW 1.22+
  */
-$wgExtensionCredits[ 'other' ][ ] = array(
-	'name'    => 'PageTools Extension',
-	'version' => '1.1',
-	'author'  => 'Jean-Lou Dupont',
-	'url'     => 'http://www.bluecortex.com',
+
+/**
+ * The main file of the PageTools extension
+ *
+ * @copyright (C) 2013, Jean-Lou Dupont, Stephan Gambke
+ * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ *
+ * This file is part of the MediaWiki extension PageTools.
+ * The PageTools extension is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The PageTools extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @file
+ * @ingroup       PageTools
+ */
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+}
+
+define( 'PT_VERSION', '2.0' );
+
+$wgExtensionCredits[ 'parserhook' ][ ] = array(
+	'path'        => __FILE__,
+	'name'        => 'PageTools',
+	'author'      => array( '[http://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'version'     => PT_VERSION,
+	'url'         => 'https://www.mediawiki.org/wiki/Extension:PageTools',
+	'description' => 'Parser functions for handling of category information, page title and page subtitle',
 );
 
-class PageTools extends ExtensionClass {
+$wgAutoloadClasses[ 'PageTools' ] = dirname( __FILE__ ) . '/PageTools.class.php';
 
-	static $mgwords = array( 'pageincategory', 'pagenumcategories', 'pagecategory',
-							 'pagetitle', 'pagetitleadd',
-							 'pagesubtitle' );
+// Specify the function that will initialize the parser functions
+$wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
 
-	public static function &singleton() { return parent::singleton(); }
+/**
+ * @param Parser $parser
+ *
+ * @return bool
+ */
+function PageToolsSetupParserFunction( Parser &$parser ) {
 
-	// Our class defines magic words: tell it to our helper class.
-	public function PageTools() { return parent::__construct( self::$mgwords ); }
+	$mgwords = array(
+		'pageincategory'    => 'PageTools::renderPageInCategory',
+		'pagenumcategories' => 'PageTools::renderPageNumCategories',
+		'pagecategory'      => 'PageTools::renderPageCategory',
+		'pagetitle'         => 'PageTools::renderPageTitle',
+		'pagetitleadd'      => 'PageTools::renderPageTitleAdd',
+		'pagesubtitle'      => 'PageTools::renderPageSubtitle',
+	);
 
-	// ===============================================================
+	// Create function hooks associating the magic words with the render functions and register magic words
+	foreach ( $mgwords as $word => $handler ) {
 
-	public function mg_pageincategory( &$parser ) {
+		MagicWord::$mObjects[ $word ] = new MagicWord( $word, array( $word ) );
+		$parser->setFunctionHook( $word, $handler );
 
-		if ( !$this->checkArticleExClass() ) {
-			return;
-		}
-		$params = $this->processArgList( func_get_args(), true );
-
-		if ( empty( $params[ 0 ] ) ) {
-			return;
-		}
-
-		// format as Mediawiki wants it ('DBkey' form)
-		$cat = str_replace( ' ', '_', $params[ 0 ] );
-
-		global $wgArticle;
-		if ( empty( $wgArticle->categories ) ) {
-			return;
-		}
-
-		return in_array( $cat, $wgArticle->categories );
 	}
 
-	public function mg_pagenumcategories( &$parser ) {
-
-		if ( !$this->checkArticleExClass() ) {
-			return;
-		}
-		$params = $this->processArgList( func_get_args(), true );
-
-		global $wgArticle;
-
-		return ( count( $wgArticle->categories ) );
-	}
-
-	public function mg_pagecategory( &$parser ) {
-
-		if ( !$this->checkArticleExClass() ) {
-			return;
-		}
-
-		$params = $this->processArgList( func_get_args(), true );
-		$index  = $params[ 0 ];
-
-		global $wgArticle;
-		$compte = count( $wgArticle->categories );
-		if ( $index >= $compte ) {
-			return;
-		}
-
-		$cat = $wgArticle->categories[ $index ];
-
-		// reformat to 'text' form (from 'DBkey' form).
-		return str_replace( '_', ' ', $cat );
-	}
-
-	public function mg_pagetitle( &$parser ) {
-
-		$params = $this->processArgList( func_get_args(), true );
-
-		global $wgOut;
-		$wgOut->setPageTitle( $params[ 0 ] );
-	}
-
-	var $titleAddition = null;
-	var $hookInPlace = false;
-
-	public function mg_pagetitleadd( &$parser ) {
-
-		$params              = $this->processArgList( func_get_args(), true );
-		$this->titleAddition = $params[ 0 ];
-
-		// only hook when we really need it.
-		if ( !$this->hookInPlace ) {
-			global $wgHooks;
-			$wgHooks[ 'BeforePageDisplay' ][ ] = array( $this, 'hBeforePageDisplay' );
-			$this->hookInPlace                 = true;
-		}
-	}
-
-	public function mg_pagesubtitle( &$parser ) {
-
-		$params = $this->processArgList( func_get_args(), true );
-		global $wgOut;
-		$wgOut->setSubtitle( $params[ 0 ] );
-	}
-
-	public function hBeforePageDisplay( $op ) {
-
-		if ( !empty( $this->titleAddition ) ) {
-			$op->setPageTitle( $op->getPageTitle() . " " . $this->titleAddition );
-		}
-
-		return true; // continue chain.
-	}
-
-	private function checkArticleExClass() {
-
-		global $wgArticle;
-
-		return ( get_class( $wgArticle ) == 'ArticleExClass' );
-	}
-
-} // end class  
-
-// Let's create a single instance of this class
-PageTools::singleton();
+	// Return true so that MediaWiki continues to load extensions.
+	return true;
+}
