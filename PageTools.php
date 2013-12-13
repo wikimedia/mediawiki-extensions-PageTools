@@ -69,10 +69,11 @@ $wgExtensionCredits[ 'parserhook' ][ ] = array(
 	'author'      => array( '[http://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
 	'version'     => PT_VERSION,
 	'url'         => 'https://www.mediawiki.org/wiki/Extension:PageTools',
-	'description' => 'Parser functions for handling of category information, page title and page subtitle',
+	'descriptionmsg' => 'pagetools-desc',
 );
 
-$wgAutoloadClasses[ 'PageTools' ] = dirname( __FILE__ ) . '/PageTools.class.php';
+$wgExtensionMessagesFiles['PageTools'] = __DIR__ . '/PageTools.i18n.php';
+$wgAutoloadClasses[ 'PageTools' ] = __DIR__ . '/PageTools.class.php';
 
 // Specify the function that will initialize the parser functions
 $wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
