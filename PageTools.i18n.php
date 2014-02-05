@@ -40,3 +40,38 @@ $messages['en'] = array(
 $messages['qqq'] = array(
 	'pagetools-desc' => '{{desc|name=Page Tools|url=https://www.mediawiki.org/wiki/Extension:PageTools}}',
 );
+
+/** German (Deutsch)
+ * @author Metalhead64
+ */
+$messages['de'] = array(
+	'pagetools-desc' => 'Parserfunktionen zur Handhabung von Kategorieinformationen, des Seitentitels und Seitenuntertitels',
+);
+
+/** French (français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'pagetools-desc' => 'Fonctions de l’analyseur pour gérer l’information des catégories, le titre et le sous-titre de la page',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'pagetools-desc' => 'Парсерски функции за работа со категориски инфорамции како и наслови и поднаслови на страници',
+);
+
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'pagetools-desc' => 'Функции парсера для обработки информации о категории, заголовке и подзаголовках страниц.',
+);
+
+/** Swedish (svenska)
+ * @author Lokal Profil
+ */
+$messages['sv'] = array(
+	'pagetools-desc' => 'Parserfunktioner för hantering av kategoriinformation, sidtitel och sidans undertitel',
+);
