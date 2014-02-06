@@ -62,6 +62,13 @@ $messages['mk'] = array(
 	'pagetools-desc' => 'Парсерски функции за работа со категориски инфорамции како и наслови и поднаслови на страници',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'pagetools-desc' => 'Fungsi-fungsi penghurai untuk mengendalikan maklumat kategori, tajuk halaman dan tajuk ketil halaman',
+);
+
 /** Russian (русский)
  * @author Okras
  */
