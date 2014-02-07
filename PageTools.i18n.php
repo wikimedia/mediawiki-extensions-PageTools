@@ -41,6 +41,13 @@ $messages['qqq'] = array(
 	'pagetools-desc' => '{{desc|name=Page Tools|url=https://www.mediawiki.org/wiki/Extension:PageTools}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'pagetools-desc' => "Funciones d'analís pa xestionar la información de categoría, y de títulu y subtítulu de la páxina",
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
@@ -53,6 +60,13 @@ $messages['de'] = array(
  */
 $messages['fr'] = array(
 	'pagetools-desc' => 'Fonctions de l’analyseur pour gérer l’information des catégories, le titre et le sous-titre de la page',
+);
+
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'pagetools-desc' => 'Funcións analíticas para manexar a información da categoría, o título da páxina e o subtítulo da páxina',
 );
 
 /** Macedonian (македонски)
