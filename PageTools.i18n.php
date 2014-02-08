@@ -69,6 +69,13 @@ $messages['gl'] = array(
 	'pagetools-desc' => 'Funcións analíticas para manexar a información da categoría, o título da páxina e o subtítulo da páxina',
 );
 
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'pagetools-desc' => 'Parserowe funkcije za wobchadźenje z kategorijowymi informacijemi, titulom strony a podtitulom strony',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -95,4 +102,11 @@ $messages['ru'] = array(
  */
 $messages['sv'] = array(
 	'pagetools-desc' => 'Parserfunktioner för hantering av kategoriinformation, sidtitel och sidans undertitel',
+);
+
+/** Ukrainian (українська)
+ * @author Ата
+ */
+$messages['uk'] = array(
+	'pagetools-desc' => 'Парсерні функції для обробки інформації про категорію, назву та підзаголовок сторінки',
 );
