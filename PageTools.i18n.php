@@ -55,6 +55,13 @@ $messages['de'] = array(
 	'pagetools-desc' => 'Parserfunktionen zur Handhabung von Kategorieinformationen, des Seitentitels und Seitenuntertitels',
 );
 
+/** Spanish (español)
+ * @author Fitoschido
+ */
+$messages['es'] = array(
+	'pagetools-desc' => 'Funciones del analizador para el manejo de información de categorías y títulos y subtítulos de páginas',
+);
+
 /** French (français)
  * @author Gomoko
  */
@@ -109,4 +116,11 @@ $messages['sv'] = array(
  */
 $messages['uk'] = array(
 	'pagetools-desc' => 'Парсерні функції для обробки інформації про категорію, назву та підзаголовок сторінки',
+);
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Liuxinyu970226
+ */
+$messages['zh-hans'] = array(
+	'pagetools-desc' => '用于分类信息、页面标题和页面子标题处理的解析器函数',
 );
