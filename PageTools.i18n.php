@@ -90,11 +90,25 @@ $messages['mk'] = array(
 	'pagetools-desc' => 'Парсерски функции за работа со категориски инфорамции како и наслови и поднаслови на страници',
 );
 
+/** Marathi (मराठी)
+ * @author V.narsikar
+ */
+$messages['mr'] = array(
+	'pagetools-desc' => 'वर्गमाहिती,पानशीर्षक व पानाचे उपशीर्षक हाताळण्यासाठी पार्सर क्रिया',
+);
+
 /** Malay (Bahasa Melayu)
  * @author Anakmalaysia
  */
 $messages['ms'] = array(
 	'pagetools-desc' => 'Fungsi-fungsi penghurai untuk mengendalikan maklumat kategori, tajuk halaman dan tajuk ketil halaman',
+);
+
+/** Polish (polski)
+ * @author Chrumps
+ */
+$messages['pl'] = array(
+	'pagetools-desc' => 'Funkcje parsera do przetwarzania informacji o kategorii, tytule strony i podtytule strony.',
 );
 
 /** Russian (русский)
