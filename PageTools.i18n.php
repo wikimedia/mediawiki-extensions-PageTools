@@ -83,6 +83,13 @@ $messages['hsb'] = array(
 	'pagetools-desc' => 'Parserowe funkcije za wobchadźenje z kategorijowymi informacijemi, titulom strony a podtitulom strony',
 );
 
+/** Korean (한국어)
+ * @author Priviet
+ */
+$messages['ko'] = array(
+	'pagetools-desc' => '분류 정보, 문서 제목, 문서 부제목을 다루기 위한 파서 함수',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
