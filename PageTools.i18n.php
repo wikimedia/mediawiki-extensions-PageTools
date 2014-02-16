@@ -111,6 +111,13 @@ $messages['ms'] = array(
 	'pagetools-desc' => 'Fungsi-fungsi penghurai untuk mengendalikan maklumat kategori, tajuk halaman dan tajuk ketil halaman',
 );
 
+/** Norwegian Bokmål (norsk bokmål)
+ * @author Danmichaelo
+ */
+$messages['nb'] = array(
+	'pagetools-desc' => 'Parserfunksjoner for håndtering av kategoriinformasjon, sidetittel og undertittel',
+);
+
 /** Polish (polski)
  * @author Chrumps
  */
