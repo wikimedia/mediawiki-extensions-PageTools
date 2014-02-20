@@ -132,6 +132,13 @@ $messages['ru'] = array(
 	'pagetools-desc' => 'Функции парсера для обработки информации о категории, заголовке и подзаголовках страниц.',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'pagetools-desc' => 'Parser functions fer haunlin o category information, page title an page subtitle',
+);
+
 /** Swedish (svenska)
  * @author Lokal Profil
  */
