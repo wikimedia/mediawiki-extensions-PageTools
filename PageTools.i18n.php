@@ -62,6 +62,13 @@ $messages['es'] = array(
 	'pagetools-desc' => 'Funciones del analizador para el manejo de información de categorías y títulos y subtítulos de páginas',
 );
 
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'pagetools-desc' => 'توابع تجزیه کننده برای کنترل اطلاعات مقوله، عنوان صفحه و زیرنویس صفحه',
+);
+
 /** French (français)
  * @author Gomoko
  */
