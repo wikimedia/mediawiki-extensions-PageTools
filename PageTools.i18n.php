@@ -166,3 +166,10 @@ $messages['uk'] = array(
 $messages['zh-hans'] = array(
 	'pagetools-desc' => '用于分类信息、页面标题和页面子标题处理的解析器函数',
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Liuxinyu970226
+ */
+$messages['zh-hant'] = array(
+	'pagetools-desc' => '用於處理分類資訊、頁面標題與頁面副標題的分析器函數',
+);
