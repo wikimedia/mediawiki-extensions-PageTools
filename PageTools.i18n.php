@@ -143,7 +143,7 @@ $messages['ru'] = array(
  * @author John Reid
  */
 $messages['sco'] = array(
-	'pagetools-desc' => 'Parser functions fer haunlin o category information, page title an page subtitle',
+	'pagetools-desc' => 'Parser functions fer haunlin o categerie information, page title n page subtitle',
 );
 
 /** Swedish (svenska)
