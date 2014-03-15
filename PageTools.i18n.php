@@ -125,6 +125,13 @@ $messages['nb'] = array(
 	'pagetools-desc' => 'Parserfunksjoner for håndtering av kategoriinformasjon, sidetittel og undertittel',
 );
 
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'pagetools-desc' => 'Foncions de l’analisador per gerir l’informacion de las categorias, lo títol e lo sostítol de la pagina',
+);
+
 /** Polish (polski)
  * @author Chrumps
  */
