@@ -125,6 +125,13 @@ $messages['nb'] = array(
 	'pagetools-desc' => 'Parserfunksjoner for håndtering av kategoriinformasjon, sidetittel og undertittel',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'pagetools-desc' => 'Parserfuncties voor het verwerken van categorie-informatie, paginanamen en pagina-ondertitel',
+);
+
 /** Occitan (occitan)
  * @author Cedric31
  */
