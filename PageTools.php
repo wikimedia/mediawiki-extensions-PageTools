@@ -4,7 +4,6 @@
  *
  * @author   Jean-Lou Dupont (http://www.bluecortex.com)
  * @author   Stephan Gambke
- * @version  2.0
  *
  * @defgroup PageTools PageTools
  *
@@ -31,7 +30,8 @@
  * -- Version 1.1: Added 'pagetitle': to modify the page's title.
  *                 Added 'pagetitleadd': to add to the current page title.
  *                 Added 'pagesubtitle': to modify the page's subtitle
- * -- Version 2.0: Complete overhaul for compatibility to MW 1.22+
+ * -- Version 2.0: Complete overhaul for compatibility to MW 1.22+.
+ * -- Version 2.1.0: Internationalisation format migrated to JSON.
  */
 
 /**
@@ -61,7 +61,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
 }
 
-define( 'PT_VERSION', '2.0' );
+define( 'PT_VERSION', '2.1.0' );
 
 $wgExtensionCredits[ 'parserhook' ][ ] = array(
 	'path'        => __FILE__,
@@ -72,6 +72,7 @@ $wgExtensionCredits[ 'parserhook' ][ ] = array(
 	'descriptionmsg' => 'pagetools-desc',
 );
 
+$wgMessagesDirs['PageTools'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['PageTools'] = __DIR__ . '/PageTools.i18n.php';
 $wgAutoloadClasses[ 'PageTools' ] = __DIR__ . '/PageTools.class.php';
 
