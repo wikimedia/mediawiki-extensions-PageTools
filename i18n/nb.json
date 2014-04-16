@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Danmichaelo"
-        ]
-    },
-    "pagetools-desc": "Parserfunksjoner for håndtering av kategoriinformasjon, sidetittel og undertittel"
+	"@metadata": {
+		"authors": [
+			"Danmichaelo"
+		]
+	},
+	"pagetools-desc": "Parserfunksjoner for håndtering av kategoriinformasjon, sidetittel og undertittel"
 }
