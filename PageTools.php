@@ -25,6 +25,9 @@
  *
  * {{#pagesubtitle: text to be added to the page's subtitle }}
  *
+ * <deflate>text  to be    deflated</deflate>
+ *    replaces all accumulations of whitespace (incl. newlines and tabs) by one single whitespace
+ *
  * HISTORY:
  * -- Version 1.0: initial availability
  * -- Version 1.1: Added 'pagetitle': to modify the page's title.
@@ -61,20 +64,20 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
 }
 
-define( 'PT_VERSION', '2.1.0' );
+define( 'PT_VERSION', '2.2.0-alpha' );
 
-$wgExtensionCredits[ 'parserhook' ][ ] = array(
-	'path'        => __FILE__,
-	'name'        => 'PageTools',
-	'author'      => array( '[http://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
-	'version'     => PT_VERSION,
-	'url'         => 'https://www.mediawiki.org/wiki/Extension:PageTools',
+$wgExtensionCredits[ 'parserhook' ][ ] = array (
+	'path'           => __FILE__,
+	'name'           => 'PageTools',
+	'author'         => array ( '[http://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'version'        => PT_VERSION,
+	'url'            => 'https://www.mediawiki.org/wiki/Extension:PageTools',
 	'descriptionmsg' => 'pagetools-desc',
 );
 
-$wgMessagesDirs['PageTools'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['PageTools'] = __DIR__ . '/PageTools.i18n.php';
-$wgAutoloadClasses[ 'PageTools' ] = __DIR__ . '/PageTools.class.php';
+$wgMessagesDirs[ 'PageTools' ]           = __DIR__ . '/i18n';
+$wgExtensionMessagesFiles[ 'PageTools' ] = __DIR__ . '/PageTools.i18n.php';
+$wgAutoloadClasses[ 'PageTools' ]        = __DIR__ . '/PageTools.class.php';
 
 // Specify the function that will initialize the parser functions
 $wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
@@ -86,7 +89,7 @@ $wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
  */
 function PageToolsSetupParserFunction( Parser &$parser ) {
 
-	$mgwords = array(
+	$mgwords = array (
 		'pageincategory'    => 'PageTools::renderPageInCategory',
 		'pagenumcategories' => 'PageTools::renderPageNumCategories',
 		'pagecategory'      => 'PageTools::renderPageCategory',
@@ -97,11 +100,11 @@ function PageToolsSetupParserFunction( Parser &$parser ) {
 
 	// Create function hooks associating the magic words with the render functions and register magic words
 	foreach ( $mgwords as $word => $handler ) {
-
-		MagicWord::$mObjects[ $word ] = new MagicWord( $word, array( $word ) );
+		MagicWord::$mObjects[ $word ] = new MagicWord( $word, array ( $word ) );
 		$parser->setFunctionHook( $word, $handler );
-
 	}
+
+	$parser->setHook( 'deflate', 'PageTools::renderDeflate' );
 
 	// Return true so that MediaWiki continues to load extensions.
 	return true;

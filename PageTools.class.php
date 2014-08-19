@@ -40,7 +40,7 @@ class PageTools {
 	 */
 	static public function renderPageInCategory( Parser &$parser, $catname ) {
 
-		$cat = Title::newFromText( (string)$catname, NS_CATEGORY );
+		$cat = Title::newFromText( (string) $catname, NS_CATEGORY );
 
 		return is_null( $cat ) ? '' : array_key_exists( $cat->getNsText() . ':' . $cat->getDBkey(), $parser->getTitle()->getParentCategories() );
 	}
@@ -72,8 +72,8 @@ class PageTools {
 
 			$categories = array_keys( $parser->getTitle()->getParentCategories() );
 
-			if ( array_key_exists( (int)$index, $categories ) ) {
-				return str_replace( '_', ' ', $categories[ (int)$index ] );
+			if ( array_key_exists( (int) $index, $categories ) ) {
+				return str_replace( '_', ' ', $categories[ (int) $index ] );
 			}
 		}
 
@@ -88,7 +88,7 @@ class PageTools {
 	 */
 	static public function renderPageTitle( Parser &$parser, $newTitle ) {
 
-		$parser->getOutput()->setTitleText( (string)$newTitle );
+		$parser->getOutput()->setTitleText( (string) $newTitle );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class PageTools {
 	 */
 	static public function renderPageTitleAdd( Parser &$parser, $titleAddon ) {
 
-		self::$titleAddition .= ' ' . (string)$titleAddon;
+		self::$titleAddition .= ' ' . (string) $titleAddon;
 
 		global $wgHooks;
 		$wgHooks[ 'BeforePageDisplay' ][ 'extension.PageTools' ] = 'PageTools::handleBeforePageDisplay';
@@ -113,7 +113,7 @@ class PageTools {
 	 */
 	static public function renderPageSubtitle( Parser &$parser, $subtitle ) {
 
-		RequestContext::getMain()->getOutput()->addSubtitle( (string)$subtitle );
+		RequestContext::getMain()->getOutput()->addSubtitle( (string) $subtitle );
 	}
 
 	/**
@@ -130,4 +130,18 @@ class PageTools {
 
 		return true; // continue chain.
 	}
+
+	/**
+	 * @param         $input
+	 * @param array   $args
+	 * @param Parser  $parser
+	 * @param PPFrame $frame
+	 *
+	 * @return string
+	 */
+	static public function renderDeflate( $input, array $args, Parser $parser, PPFrame $frame ) {
+
+		return preg_replace( '/\s+/', ' ', trim( $parser->recursiveTagParse( $input, $frame ) ) );
+	}
+
 }
