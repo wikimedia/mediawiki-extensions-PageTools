@@ -76,7 +76,6 @@ $wgExtensionCredits[ 'parserhook' ][ ] = array (
 );
 
 $wgMessagesDirs[ 'PageTools' ]           = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles[ 'PageTools' ] = __DIR__ . '/PageTools.i18n.php';
 $wgAutoloadClasses[ 'PageTools' ]        = __DIR__ . '/PageTools.class.php';
 
 // Specify the function that will initialize the parser functions
