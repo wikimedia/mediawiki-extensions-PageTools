@@ -75,8 +75,9 @@ $wgExtensionCredits[ 'parserhook' ][ ] = array (
 	'descriptionmsg' => 'pagetools-desc',
 );
 
-$wgMessagesDirs[ 'PageTools' ]           = __DIR__ . '/i18n';
-$wgAutoloadClasses[ 'PageTools' ]        = __DIR__ . '/PageTools.class.php';
+$wgMessagesDirs[ 'PageTools' ]                = __DIR__ . '/i18n';
+$wgExtensionMessagesFiles[ 'PageToolsMagic' ] = __DIR__ . '/PageTools.i18n.magic.php';
+$wgAutoloadClasses[ 'PageTools' ]             = __DIR__ . '/PageTools.class.php';
 
 // Specify the function that will initialize the parser functions
 $wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
@@ -97,9 +98,8 @@ function PageToolsSetupParserFunction( Parser &$parser ) {
 		'pagesubtitle'      => 'PageTools::renderPageSubtitle',
 	);
 
-	// Create function hooks associating the magic words with the render functions and register magic words
+	// Create function hooks associating the magic words with the render functions
 	foreach ( $mgwords as $word => $handler ) {
-		MagicWord::$mObjects[ $word ] = new MagicWord( $word, array ( $word ) );
 		$parser->setFunctionHook( $word, $handler );
 	}
 
