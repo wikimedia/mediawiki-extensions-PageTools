@@ -69,7 +69,7 @@ define( 'PT_VERSION', '2.2.0-alpha' );
 $wgExtensionCredits[ 'parserhook' ][ ] = array (
 	'path'           => __FILE__,
 	'name'           => 'PageTools',
-	'author'         => array ( '[http://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'author'         => array ( '[https://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
 	'version'        => PT_VERSION,
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:PageTools',
 	'descriptionmsg' => 'pagetools-desc',
