@@ -77,34 +77,8 @@ $wgExtensionCredits[ 'parserhook' ][ ] = array (
 
 $wgMessagesDirs[ 'PageTools' ]                = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles[ 'PageToolsMagic' ] = __DIR__ . '/PageTools.i18n.magic.php';
-$wgAutoloadClasses[ 'PageTools' ]             = __DIR__ . '/PageTools.class.php';
+$wgAutoloadClasses[ 'PageTools' ]             = __DIR__ . '/includes/PageTools.php';
+$wgAutoloadClasses[ 'PageToolsHooks' ]        = __DIR__ . '/includes/PageToolsHooks.php';
 
 // Specify the function that will initialize the parser functions
-$wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsSetupParserFunction';
-
-/**
- * @param Parser $parser
- *
- * @return bool
- */
-function PageToolsSetupParserFunction( Parser &$parser ) {
-
-	$mgwords = array (
-		'pageincategory'    => 'PageTools::renderPageInCategory',
-		'pagenumcategories' => 'PageTools::renderPageNumCategories',
-		'pagecategory'      => 'PageTools::renderPageCategory',
-		'pagetitle'         => 'PageTools::renderPageTitle',
-		'pagetitleadd'      => 'PageTools::renderPageTitleAdd',
-		'pagesubtitle'      => 'PageTools::renderPageSubtitle',
-	);
-
-	// Create function hooks associating the magic words with the render functions
-	foreach ( $mgwords as $word => $handler ) {
-		$parser->setFunctionHook( $word, $handler );
-	}
-
-	$parser->setHook( 'deflate', 'PageTools::renderDeflate' );
-
-	// Return true so that MediaWiki continues to load extensions.
-	return true;
-}
+$wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsHooks::onPageToolsSetupParserFunction';
