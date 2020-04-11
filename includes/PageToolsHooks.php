@@ -3,19 +3,19 @@
 class PageToolsHooks {
 
 	/**
-	 * @param Parser $parser
+	 * @param Parser &$parser
 	 *
 	 * @return bool
 	 */
 	public static function onPageToolsSetupParserFunction( Parser &$parser ) {
-		$mgwords = array (
+		$mgwords = [
 			'pageincategory'    => 'PageTools::renderPageInCategory',
 			'pagenumcategories' => 'PageTools::renderPageNumCategories',
 			'pagecategory'      => 'PageTools::renderPageCategory',
 			'pagetitle'         => 'PageTools::renderPageTitle',
 			'pagetitleadd'      => 'PageTools::renderPageTitleAdd',
 			'pagesubtitle'      => 'PageTools::renderPageSubtitle',
-		);
+		];
 
 		// Create function hooks associating the magic words with the render functions
 		foreach ( $mgwords as $word => $handler ) {

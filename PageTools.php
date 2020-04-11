@@ -41,7 +41,7 @@
  * The main file of the PageTools extension
  *
  * @copyright (C) 2013, Jean-Lou Dupont, Stephan Gambke
- * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension PageTools.
  * The PageTools extension is free software: you can redistribute it and/or
@@ -66,14 +66,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 define( 'PT_VERSION', '2.2.0-alpha' );
 
-$wgExtensionCredits[ 'parserhook' ][ ] = array (
+$wgExtensionCredits[ 'parserhook' ][ ] = [
 	'path'           => __FILE__,
 	'name'           => 'PageTools',
-	'author'         => array ( '[https://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ),
+	'author'         => [ '[https://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ],
 	'version'        => PT_VERSION,
 	'url'            => 'https://www.mediawiki.org/wiki/Extension:PageTools',
 	'descriptionmsg' => 'pagetools-desc',
-);
+];
 
 $wgMessagesDirs[ 'PageTools' ]                = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles[ 'PageToolsMagic' ] = __DIR__ . '/PageTools.i18n.magic.php';
