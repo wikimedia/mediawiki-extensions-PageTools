@@ -60,25 +60,17 @@
  * @file
  * @ingroup       PageTools
  */
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+if ( function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'PageTools' );
+	// Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['PageTools'] = __DIR__ . '/i18n';
+	$wgExtensionMessagesFiles['PageToolsMagic'] = __DIR__ . '/PageTools.i18n.magic.php';
+	wfWarn(
+		'Deprecated PHP entry point used for the PageTools extension. ' .
+		'Please use wfLoadExtension() instead, ' .
+		'see https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extension_registration for more details.'
+	);
+	return;
+} else {
+	die( 'This version of the PageTools extension requires MediaWiki 1.29+' );
 }
-
-define( 'PT_VERSION', '2.2.0-alpha' );
-
-$wgExtensionCredits[ 'parserhook' ][ ] = [
-	'path'           => __FILE__,
-	'name'           => 'PageTools',
-	'author'         => [ '[https://www.mediawiki.org/wiki/User:Jldupont Jean-Lou Dupont]', '[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]' ],
-	'version'        => PT_VERSION,
-	'url'            => 'https://www.mediawiki.org/wiki/Extension:PageTools',
-	'descriptionmsg' => 'pagetools-desc',
-];
-
-$wgMessagesDirs[ 'PageTools' ]                = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles[ 'PageToolsMagic' ] = __DIR__ . '/PageTools.i18n.magic.php';
-$wgAutoloadClasses[ 'PageTools' ]             = __DIR__ . '/includes/PageTools.php';
-$wgAutoloadClasses[ 'PageToolsHooks' ]        = __DIR__ . '/includes/PageToolsHooks.php';
-
-// Specify the function that will initialize the parser functions
-$wgHooks[ 'ParserFirstCallInit' ][ ] = 'PageToolsHooks::onPageToolsSetupParserFunction';
