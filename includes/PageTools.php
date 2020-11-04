@@ -34,7 +34,7 @@ class PageTools {
 	 * Render {{#pageincategory:}}. Returns 1 if the current page is in the given category.
 	 *
 	 * @param Parser &$parser
-	 * @param String $catname
+	 * @param string $catname
 	 *
 	 * @return string
 	 */
