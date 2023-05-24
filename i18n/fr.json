@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Verdy p"
 		]
 	},
-	"pagetools-desc": "Fonctions de l’analyseur pour gérer l’information des catégories, le titre et le sous-titre de la page"
+	"pagetools-desc": "Fonctions de l’analyseur pour gérer les informations de catégories, le titre et le sous-titre de la page"
 }
