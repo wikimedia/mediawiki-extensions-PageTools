@@ -23,6 +23,8 @@
  * @ingroup PageTools
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Class PageTools contains parser function and hook handlers of the PageTools extension
  */
